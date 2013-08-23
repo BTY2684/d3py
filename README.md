@@ -1,6 +1,8 @@
 d3py
 ====
 
+[![Build Status](https://travis-ci.org/lxyu/d3py.png?branch=master)](https://travis-ci.org/lxyu/d3py)
+
 This is `d3py`: a plotting library for python based on d3. The aim of d3py is to provide a simple way to plot data from the command line or simple scripts into a browser window.
 
 d3py accomplishes this by building on two excellent packages. The first is `d3.js` (Mike Bostock), which is a javascript library for creating data driven documents, which allows us to place arbitrary svg into a browser window. The second is the `pandas` Python module (Wes Mckinney), which blesses Python with (amongst other things) the DataFrame data structure.
@@ -11,7 +13,7 @@ The idioms used to plot data are very simple, and borrow from R's [ggplot2](http
 2. add `geom`s to the figure object to plot specific combinations of columns of the data frame.
 3. show the figure, which serves up the figure in a browser window
 4. muck about with the style of the plot using the browser's developer tools
-5. share FTW! 
+5. share FTW!
 
 Each geom takes as parameters an appropriate number of column names of the data frame as arguments. For example the `Line` geom, which has two dimensions, takes an x-value and a y-value. A `Point` geom, which makes up a scatter plot, has three dimensions and so takes three parameters: x, y and colour (in the future it could take size, too!).
 
@@ -24,7 +26,7 @@ An example session could like:
 	import d3py
 	import pandas
 	import numpy as np
-	
+
 	# some test data
 	T = 100
 	# this is a data frame with three columns (we only use 2)
@@ -35,11 +37,11 @@ An example session could like:
 	})
 	## build up a figure, ggplot2 style
 	# instantiate the figure object
-	fig = d3py.PandasFigure(df, name="basic_example", width=300, height=300) 
+	fig = d3py.PandasFigure(df, name="basic_example", width=300, height=300)
 	# add some red points
 	fig += d3py.geoms.Point(x="pressure", y="temp", fill="red")
 	# writes 3 files, starts up a server, then draws some beautiful points in Chrome
-	fig.show() 
+	fig.show()
 
 Check out the examples in the folder for more functionality! Assuming everything is working OK, the examples should generate (something akin to) the following plots:
 
