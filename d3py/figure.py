@@ -230,6 +230,26 @@ class Figure(object):
         self._save_css()
         self._save_js()
         self._save_html()
+        
+    def save_to_files(self, folder = "."):
+        '''Save data, JS, CSS, HTML into files
+        Parameters:
+        -----------
+        folder: string
+            folder where files will be written
+        return:
+            list of written files
+        '''
+        logging.debug('saving chart to files')
+        self.update()
+        files = [ ]
+        for ext in [".css", ".json", ".html", ".js"]:
+            fn = self.name + ext
+            pfn = os.path.join(folder, fn)
+            with open(pfn,"wb")as f: 
+                f.write(self.filemap[fn]["fd"].getvalue())        
+            files.append(pfn)
+        return files
 
     def _save_data(self, directory=None):
         """
